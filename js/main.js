@@ -1,8 +1,6 @@
 import {generatePhotosDescription} from './data/photosGenerator.js';
-import {createRandomIdFromRangeGenerator} from './utils/randomNums.js';
+import {createIdFromRangeGenerator} from './utils/randomNums.js';
+import { PHOTOS_COUNT, COMMENT_ID_MAX } from './constants/constants.js';
 
-
-const commentsIdGenerator = createRandomIdFromRangeGenerator(1, 1000);
-const photos = generatePhotosDescription(25, commentsIdGenerator);
-
-
+const commentsIdGenerator = createIdFromRangeGenerator(COMMENT_ID_MAX);
+const photos = generatePhotosDescription(PHOTOS_COUNT, commentsIdGenerator);
