@@ -1,41 +1,19 @@
 
 function renderPhotosTemplate(data) {
   const photosData = data;
-  const template = new DocumentFragment();
-  for (let i = 0; i < photosData.length; i++) {
-    const pictureContainer = document.createElement('a');
-    pictureContainer.classList.add('picture');
-    pictureContainer.href = '#';
-
-    // Рендер картинки
-    const picImg = document.createElement('img');
-    picImg.classList.add('picture__img');
-    picImg.src = photosData[i].url;
-    picImg.alt = photosData[i].description;
-    picImg.width = '182';
-    picImg.height = '182';
-
-    // Рендер описания
-    const picDesciptionSection = document.createElement('p');
-    picDesciptionSection.classList.add('picture__info');
-
-    const picComments = document.createElement('span');
-    picComments.classList.add('picture__comments');
-    picComments.textContent = photosData[i].comments.length;
-
-    const picLikes = document.createElement('span');
-    picLikes.classList.add('picture__likes');
-    picLikes.textContent = photosData[i].likes;
-    picDesciptionSection.appendChild(picComments);
-    picDesciptionSection.appendChild(picLikes);
-
-    pictureContainer.appendChild(picImg);
-    pictureContainer.appendChild(picDesciptionSection);
-
-    template.appendChild(pictureContainer);
-  }
+  const fragment = new DocumentFragment();
   const picturesContainer = document.querySelector('.pictures');
-  picturesContainer.appendChild(template);
+  const pictureTemplate = document.querySelector('#picture');
+
+  photosData.forEach((element) => {
+    const pictureElement = pictureTemplate.content.cloneNode(true);
+    pictureElement.querySelector('.picture__img').src = element.url;
+    pictureElement.querySelector('.picture__likes').textContent = element.likes;
+    pictureElement.querySelector('.picture__comments').textContent = element.comments.length;
+    fragment.appendChild(pictureElement);
+  });
+
+  picturesContainer.appendChild(fragment);
 }
 
 
