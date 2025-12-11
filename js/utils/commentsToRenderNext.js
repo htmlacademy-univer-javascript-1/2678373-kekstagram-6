@@ -1,4 +1,4 @@
-import { COMMENTS_TO_RENDER } from "../constants/constants.js";
+import { COMMENTS_TO_RENDER } from '../constants/constants.js';
 
 function commentsToRenderIncrement(currentCommentAmount, commentsDataLength) {
   if (commentsDataLength - currentCommentAmount < COMMENTS_TO_RENDER) {

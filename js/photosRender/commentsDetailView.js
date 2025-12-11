@@ -1,4 +1,4 @@
-import { commentsToRenderIncrement, normalizeCommentsToRenderRange } from "../utils/commentsToRenderNext.js";
+import { commentsToRenderIncrement, normalizeCommentsToRenderRange } from '../utils/commentsToRenderNext.js';
 
 function onLoadMoreClick(commentsData, startComment, endComment) {
   const totalCommentsAmount = commentsData.length;
