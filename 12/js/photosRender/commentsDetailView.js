@@ -14,8 +14,10 @@ function onLoadMoreClick(commentsData, startComment, endComment) {
   };
 }
 function updateCommentsCounterElement(counterElement, commentsRendered) {
-  counterElement.classList.remove('hidden');
-  counterElement.firstChild.textContent = `${commentsRendered  } из `;
+  if (commentsRendered !== 0) {
+    counterElement.classList.remove('hidden');
+    counterElement.firstChild.textContent = `${commentsRendered  } из `;
+  }
 }
 function updateLoadMoreElement(loadMoreElement, commentsRendered, commentsTotalAmount) {
   loadMoreElement.classList.toggle('hidden', commentsRendered >= commentsTotalAmount);
