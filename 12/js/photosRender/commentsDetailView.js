@@ -1,4 +1,4 @@
-import { commentsToRenderIncrement, normalizeCommentsToRenderRange } from '../utils/commentsToRenderNext.js';
+import { calculateCommentsToRender, normalizeCommentsToRenderRange } from '../utils/commentsToRenderNext.js';
 
 function onLoadMoreClick(commentsData, startComment, endComment) {
   const totalCommentsAmount = commentsData.length;
@@ -7,10 +7,10 @@ function onLoadMoreClick(commentsData, startComment, endComment) {
       return;
     }
 
-    startComment = endComment;
-    endComment = commentsToRenderIncrement(endComment, totalCommentsAmount);
+    const nextStartComment = endComment;
+    const nextEndComment = calculateCommentsToRender(endComment, totalCommentsAmount);
 
-    renderComments(commentsData, startComment, endComment);
+    renderComments(commentsData, nextStartComment, nextEndComment);
   };
 }
 function updateCommentsCounterElement(counterElement, commentsRendered) {
@@ -20,7 +20,7 @@ function updateCommentsCounterElement(counterElement, commentsRendered) {
   }
 }
 function updateLoadMoreElement(loadMoreElement, commentsRendered, commentsTotalAmount) {
-  loadMoreElement.classList.toggle('hidden', commentsRendered >= commentsTotalAmount);
+  loadMoreElement.classList.toggle('hidden', commentsRendered === commentsTotalAmount);
 }
 function renderComments(commentsData, startComment, endComment) {
   const commentsContainer = document.querySelector('.social__comments');
