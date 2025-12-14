@@ -1,4 +1,4 @@
-import { commentsToRenderIncrement, normalizeCommentsToRenderRange } from '../utils/commentsToRenderNext.js';
+import { calculateCommentsToRender, normalizeCommentsToRenderRange } from '../utils/commentsToRenderNext.js';
 
 function onLoadMoreClick(commentsData, startComment, endComment) {
   const totalCommentsAmount = commentsData.length;
@@ -8,7 +8,7 @@ function onLoadMoreClick(commentsData, startComment, endComment) {
     }
 
     startComment = endComment;
-    endComment = commentsToRenderIncrement(endComment, totalCommentsAmount);
+    endComment = calculateCommentsToRender(endComment, totalCommentsAmount);
 
     renderComments(commentsData, startComment, endComment);
   };

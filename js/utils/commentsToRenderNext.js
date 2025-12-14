@@ -1,10 +1,7 @@
 import { COMMENTS_TO_RENDER } from '../constants/constants.js';
 
-function commentsToRenderIncrement(currentCommentAmount, commentsDataLength) {
-  if (commentsDataLength - currentCommentAmount < COMMENTS_TO_RENDER) {
-    return currentCommentAmount + (commentsDataLength - currentCommentAmount);
-  }
-  return currentCommentAmount + COMMENTS_TO_RENDER;
+function calculateCommentsToRender(currentCommentAmount, commentsDataLength) {
+  return Math.min(currentCommentAmount + COMMENTS_TO_RENDER, commentsDataLength);
 }
 
 function normalizeCommentsToRenderRange(startComment, endComment, commentsTotalAmount) {
@@ -17,4 +14,4 @@ function normalizeCommentsToRenderRange(startComment, endComment, commentsTotalA
   return {startComment, endComment};
 }
 
-export {commentsToRenderIncrement, normalizeCommentsToRenderRange};
+export {calculateCommentsToRender, normalizeCommentsToRenderRange};
