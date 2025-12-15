@@ -30,9 +30,11 @@ function unbound() {
 }
 
 function onPhotoClick(evt) {
-  evt.preventDefault();
   const picture = evt.target.closest('.picture');
-
+  if (!picture) {
+    return;
+  }
+  evt.preventDefault();
   const id = Number(picture.dataset.id);
   const photoData = photosMap.get(id);
   showDetailView(photoData);
