@@ -14,7 +14,7 @@ function closeFormModal() {
   const hashtagsInput = document.querySelector('.text__hashtags');
   const descriptionInput = document.querySelector('.text__description');
   const uploadOverlay = document.querySelector('.img-upload__overlay');
-  const page = document.querySelector('body');
+  const page = document.body;
 
   uploadOverlay.classList.add('hidden');
   page.classList.remove('modal-open');

@@ -1,4 +1,4 @@
-
+import { HASHTAGS_MAX_COUNT, HASHTAG_MAX_LENGTH, DESCRIPTION_MAX_LENGTH, HASHTAG_PATTERN } from '../constants/constants.js';
 function getHashtagsError(tags) {
   if (!tags) {
     return '';
@@ -6,23 +6,23 @@ function getHashtagsError(tags) {
 
   const hashtags = tags.trim().split(/\s+/);
 
-  if (hashtags.length > 5) {
-    return 'Слишком много хэштегов';
+  if (hashtags.length > HASHTAGS_MAX_COUNT) {
+    return `Нельзя указать больше ${HASHTAGS_MAX_COUNT} хэштегов`;
   }
 
   const lowerTags = hashtags.map((tag) => tag.toLowerCase());
 
   for (const tag of hashtags) {
     if (!tag.startsWith('#')) {
-      return 'Введен невалидный хэштег';
+      return 'Хэштег должен начинаться с символа #';
     }
 
-    if (!/^#[a-zA-Zа-яА-Я0-9]+$/.test(tag)) {
-      return 'Введен невалидный хэштег';
+    if (!HASHTAG_PATTERN.test(tag)) {
+      return 'Хэштег не должен содержать спецсимволы и состоять только из #';
     }
 
-    if (tag.length > 20 || tag.length < 2) {
-      return 'Введен невалидный хэштег';
+    if (tag.length > HASHTAG_MAX_LENGTH || tag.length < 2) {
+      return 'Хештег должен быть до 20 символов';
     }
 
     if (lowerTags.filter((t) => t === tag.toLowerCase()).length > 1) {
@@ -33,11 +33,8 @@ function getHashtagsError(tags) {
   return '';
 }
 function getDescriptionError(description) {
-  if (!description) {
-    return '';
-  }
 
-  return description.length < 140 ? '' : 'Описание не должно превышать 140 символов';
+  return description.trim().length < DESCRIPTION_MAX_LENGTH ? '' : `Описание не должно превышать ${DESCRIPTION_MAX_LENGTH} символов`;
 }
 
 function validateHashtags(tags) {
