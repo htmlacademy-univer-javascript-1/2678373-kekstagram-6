@@ -1,5 +1,7 @@
 import { onFormEscapeKeydown } from '../utils/keyboardControl.js';
-
+import { trackFormImageScaleEdit } from './formImageScaleEdit.js';
+import { validateForm } from './formValidation.js';
+import { initSlider, resetFilters } from './formImageFilterEdit.js';
 function trackFormUpload() {
   const uploadInput = document.querySelector('.img-upload__input');
   const closeFormModalButton = document.querySelector('.img-upload__cancel');
@@ -23,15 +25,29 @@ function closeFormModal() {
   hashtagsInput.value = '';
   descriptionInput.value = '';
   document.removeEventListener('keydown', onFormEscapeKeydown);
+
+  resetFilters();
 }
 
 function openFormModal() {
   const uploadOverlay = document.querySelector('.img-upload__overlay');
+  const imagePreview = document.querySelector('.img-upload__preview img');
+  const uploadInput = document.querySelector('.img-upload__input');
   const page = document.querySelector('body');
+  const file = uploadInput.files[0];
+
+  if (file && file.type.startsWith('image/')) {
+    imagePreview.src = URL.createObjectURL(file);
+  }
 
   uploadOverlay.classList.remove('hidden');
   page.classList.add('modal-open');
   document.addEventListener('keydown', onFormEscapeKeydown);
+
+  initSlider();
+  trackFormImageScaleEdit();
+  validateForm();
+
 }
 
 export { trackFormUpload, closeFormModal };
