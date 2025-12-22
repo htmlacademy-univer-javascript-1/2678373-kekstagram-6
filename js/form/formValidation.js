@@ -46,8 +46,13 @@ function validateDescription(description) {
 }
 
 let pristine;
+let isInitialized = false;
 
 function validateForm() {
+  if (isInitialized) {
+    return;
+  }
+  isInitialized = true;
   const form = document.querySelector('.img-upload__form');
   const hashtagsInput = document.querySelector('.text__hashtags');
   const descriptionInput = document.querySelector('.text__description');
