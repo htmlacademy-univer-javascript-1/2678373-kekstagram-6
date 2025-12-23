@@ -45,11 +45,21 @@ function validateDescription(description) {
   return getDescriptionError(description) === '';
 }
 
+let pristine;
+let isInitialized = false;
+
+function resetValidator() {
+  pristine.reset();
+}
 function validateForm() {
+  if (isInitialized) {
+    return;
+  }
+  isInitialized = true;
   const form = document.querySelector('.img-upload__form');
   const hashtagsInput = document.querySelector('.text__hashtags');
   const descriptionInput = document.querySelector('.text__description');
-  const pristine = new Pristine(form, {
+  pristine = new Pristine(form, {
     classTo: 'img-upload__field-wrapper',
     errorTextParent: 'img-upload__field-wrapper',
     errorTextClass: 'img-upload__error'
@@ -58,18 +68,22 @@ function validateForm() {
   pristine.addValidator(hashtagsInput, validateHashtags, getHashtagsError);
   pristine.addValidator(descriptionInput, validateDescription, getDescriptionError);
 
-  form.addEventListener('input', () => {
-    pristine.validate(hashtagsInput);
-  });
+  form.addEventListener('input', onFormInput);
 
-  form.addEventListener('input', () => {
-    pristine.validate(descriptionInput);
-  });
-
-  form.addEventListener('submit', (evt) => {
-    if (!pristine.validate()) {
-      evt.preventDefault();
-    }
-  });
+  form.addEventListener('submit', onFormSubmit);
 }
-export { validateForm };
+
+function onFormInput(evt) {
+  if (evt.target.classList.contains('text__hashtags')) {
+    pristine.validate(evt.target);
+  }
+  if (evt.target.classList.contains('text__description')) {
+    pristine.validate(evt.target);
+  }
+}
+function onFormSubmit(evt) {
+  if (!pristine.validate()) {
+    evt.preventDefault();
+  }
+}
+export { validateForm, resetValidator };

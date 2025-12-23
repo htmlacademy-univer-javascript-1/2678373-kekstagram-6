@@ -20,4 +20,82 @@ const HASHTAGS_MAX_COUNT = 5;
 const HASHTAG_MAX_LENGTH = 20;
 const DESCRIPTION_MAX_LENGTH = 140;
 const HASHTAG_PATTERN = /^#[a-zа-я0-9]+$/i;
-export {NAMES, COMMENTS, AVATAR_URLS_INDEX_MIN, AVATAR_URLS_INDEX_MAX, COMMENTS_COUNT_MIN, COMMENTS_COUNT_MAX, LIKES_MIN, LIKES_MAX, PHOTOS_COUNT, COMMENT_ID_MAX, COMMENTS_TO_RENDER, HASHTAGS_MAX_COUNT, HASHTAG_MAX_LENGTH, DESCRIPTION_MAX_LENGTH, HASHTAG_PATTERN};
+
+const FORM_IMAGE_SCALE_STEP = 25;
+const FORM_IMAGE_SCALE_MIN = 25;
+const FORM_IMAGE_SCALE_MAX = 100;
+const FORM_IMAGE_SCALE_DEFAULT = 100;
+
+const EFFECTS = {
+  none: {
+    filter: null,
+    min: 0,
+    max: 100,
+    step: 1,
+    unit: '',
+    start: 100,
+  },
+  chrome: {
+    filter: 'grayscale',
+    min: 0,
+    max: 1,
+    step: 0.1,
+    unit: '',
+    start: 1,
+  },
+  sepia: {
+    filter: 'sepia',
+    min: 0,
+    max: 1,
+    step: 0.1,
+    unit: '',
+    start: 1,
+  },
+  marvin: {
+    filter: 'invert',
+    min: 0,
+    max: 100,
+    step: 1,
+    unit: '%',
+    start: 100,
+  },
+  phobos: {
+    filter: 'blur',
+    min: 0,
+    max: 3,
+    step: 0.1,
+    unit: 'px',
+    start: 3,
+  },
+  heat: {
+    filter: 'brightness',
+    min: 1,
+    max: 3,
+    step: 0.1,
+    unit: '',
+    start: 3,
+  },
+};
+
+export {
+  NAMES,
+  COMMENTS,
+  AVATAR_URLS_INDEX_MIN,
+  AVATAR_URLS_INDEX_MAX,
+  COMMENTS_COUNT_MIN,
+  COMMENTS_COUNT_MAX,
+  LIKES_MIN,
+  LIKES_MAX,
+  PHOTOS_COUNT,
+  COMMENT_ID_MAX,
+  COMMENTS_TO_RENDER,
+  HASHTAGS_MAX_COUNT,
+  HASHTAG_MAX_LENGTH,
+  DESCRIPTION_MAX_LENGTH,
+  HASHTAG_PATTERN,
+  FORM_IMAGE_SCALE_STEP,
+  FORM_IMAGE_SCALE_MIN,
+  FORM_IMAGE_SCALE_MAX,
+  FORM_IMAGE_SCALE_DEFAULT,
+  EFFECTS
+};
