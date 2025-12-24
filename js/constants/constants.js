@@ -77,6 +77,9 @@ const EFFECTS = {
   },
 };
 
+const BASE_URL = 'https://29.javascript.htmlacademy.pro/kekstagram';
+const PHOTOS_ENDPOINT = '/data';
+
 export {
   NAMES,
   COMMENTS,
@@ -97,5 +100,7 @@ export {
   FORM_IMAGE_SCALE_MIN,
   FORM_IMAGE_SCALE_MAX,
   FORM_IMAGE_SCALE_DEFAULT,
-  EFFECTS
+  EFFECTS,
+  BASE_URL,
+  PHOTOS_ENDPOINT
 };
