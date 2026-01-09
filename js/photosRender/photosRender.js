@@ -1,9 +1,10 @@
 import { bindPhotoDetailView } from '../utils/bindPhotosDetailView.js';
+
 function renderPhotosTemplate(photosData) {
   const fragment = new DocumentFragment();
   const picturesContainer = document.querySelector('.pictures');
   const pictureTemplate = document.querySelector('#picture');
-
+  const filterElement = document.querySelector('.img-filters');
   photosData.forEach((photoData) => {
     const pictureElement = pictureTemplate.content.cloneNode(true);
     const wrapper = pictureElement.querySelector('.picture');
@@ -17,7 +18,7 @@ function renderPhotosTemplate(photosData) {
 
     fragment.appendChild(pictureElement);
   });
-
+  filterElement.classList.remove('img-filters--inactive');
   picturesContainer.appendChild(fragment);
   try {
     bindPhotoDetailView(picturesContainer, photosData);
