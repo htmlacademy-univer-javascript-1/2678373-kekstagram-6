@@ -1,17 +1,13 @@
 import { renderComments } from './commentsDetailView.js';
-import { clearComments } from '../utils/clearComments.js';
 import { bindEscapeKeydown, unbindEscapeKeydown } from '../utils/keyboardControl.js';
-
 const closeButton = document.querySelector('.big-picture__cancel');
 let isBound = false;
 
 function showDetailView(photoData) {
-  clearComments();
-
   const bigPictureContainer = document.querySelector('.big-picture');
   const bigPictureImg = bigPictureContainer.querySelector('.big-picture__img img');
   const likesCount = bigPictureContainer.querySelector('.likes-count');
-  const commentsCount = bigPictureContainer.querySelector('.comments-count');
+  const commentsCount = bigPictureContainer.querySelector('.social__comment-total-count');
   const photoDescription = bigPictureContainer.querySelector('.social__caption');
   bigPictureImg.src = photoData.url;
   bigPictureImg.alt = photoData.description;
